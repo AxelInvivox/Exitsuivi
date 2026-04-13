@@ -8,7 +8,6 @@
 <style>
   :root {
     --bg: #0a0805;
-    --bg2: #100e0a;
     --panel: #16120d;
     --border: #3a2f1e;
     --border-glow: #c8a050;
@@ -17,11 +16,9 @@
     --gold-dim: #8a6820;
     --text: #e8dcc8;
     --text-dim: #8a7a5e;
-    --red: #c0392b;
-    --green: #2e7d5a;
     --green-light: #4ab880;
     --star-on: #f5c518;
-    --star-off: #3a2f1e;
+    --star-off: #2a2218;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -32,324 +29,163 @@
     background-image:
       radial-gradient(ellipse at 20% 20%, rgba(212,168,67,0.04) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 80%, rgba(192,57,43,0.04) 0%, transparent 60%),
-      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a843' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23d4a843' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
+
+  /* ── HEADER ── */
   header {
     text-align: center;
-    padding: 48px 24px 32px;
+    padding: 44px 24px 28px;
     border-bottom: 1px solid var(--border);
     position: relative;
-    overflow: hidden;
   }
   header::before {
     content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
+    position: absolute; top: 0; left: 0; right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-  .header-lock {
-    font-size: 42px;
-    margin-bottom: 12px;
-    filter: drop-shadow(0 0 12px rgba(212,168,67,0.5));
-    animation: pulse-lock 3s ease-in-out infinite;
-  }
+  .header-lock { font-size: 40px; margin-bottom: 10px; animation: pulse-lock 3s ease-in-out infinite; }
   @keyframes pulse-lock {
-    0%, 100% { filter: drop-shadow(0 0 8px rgba(212,168,67,0.4)); }
-    50% { filter: drop-shadow(0 0 20px rgba(212,168,67,0.8)); }
+    0%,100% { filter: drop-shadow(0 0 8px rgba(212,168,67,0.4)); }
+    50% { filter: drop-shadow(0 0 22px rgba(212,168,67,0.85)); }
   }
   h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(28px, 5vw, 48px);
+    font-size: clamp(20px, 5vw, 44px);
     font-weight: 900;
     letter-spacing: 0.12em;
     color: var(--gold);
-    text-shadow: 0 0 30px rgba(212,168,67,0.4);
-    margin-bottom: 6px;
+    text-shadow: 0 0 30px rgba(212,168,67,0.35);
+    margin-bottom: 5px;
   }
   .subtitle {
     font-family: 'Cinzel', serif;
-    font-size: 13px;
-    letter-spacing: 0.3em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 24px;
+    font-size: 11px; letter-spacing: 0.3em;
+    color: var(--text-dim); text-transform: uppercase; margin-bottom: 26px;
   }
-  .stats-bar {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    padding: 0 24px;
-  }
+  .stats-bar { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
   .stat { text-align: center; }
-  .stat-value {
-    font-family: 'Cinzel', serif;
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--gold);
-    display: block;
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-top: 4px;
-  }
+  .stat-value { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 600; color: var(--gold); display: block; line-height: 1; }
+  .stat-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-top: 3px; }
   .stat-divider { width: 1px; background: var(--border); align-self: stretch; }
-  .filters {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 24px;
-    border-bottom: 1px solid var(--border);
+
+  /* ── PROGRESS ── */
+  .progress-wrap { padding: 18px 24px 10px; max-width: 1500px; margin: 0 auto; }
+  .progress-label {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.15em;
+    color: var(--text-dim); text-transform: uppercase; margin-bottom: 7px;
+    display: flex; justify-content: space-between;
   }
-  .filter-btn {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    padding: 6px 16px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text-dim);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-  }
-  .filter-btn:hover { border-color: var(--gold-dim); color: var(--text); }
-  .filter-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212,168,67,0.06); }
-  .table-container {
-    padding: 24px;
-    max-width: 1400px;
-    margin: 0 auto;
-    overflow-x: auto;
-  }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  thead tr { border-bottom: 2px solid var(--gold-dim); }
-  th {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    padding: 10px 12px;
-    text-align: left;
-    cursor: pointer;
-    white-space: nowrap;
-    user-select: none;
-  }
-  th:hover { color: var(--gold); }
-  tbody tr {
-    border-bottom: 1px solid rgba(58,47,30,0.5);
-    transition: background 0.15s;
-    cursor: pointer;
-  }
-  tbody tr:hover { background: rgba(212,168,67,0.04); }
-  tbody tr.played { background: rgba(46,125,90,0.04); }
-  tbody tr.played:hover { background: rgba(46,125,90,0.08); }
-  td { padding: 10px 12px; vertical-align: middle; }
-  .game-title {
-    font-family: 'Crimson Text', serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--text);
-    min-width: 220px;
-  }
-  .game-title.not-played { color: var(--text-dim); font-weight: 400; font-style: italic; }
-  .level-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    padding: 3px 8px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .level-D { background: rgba(46,110,74,0.25); border: 1px solid rgba(46,110,74,0.6); color: #6dcb97; }
-  .level-C { background: rgba(107,78,26,0.25); border: 1px solid rgba(107,78,26,0.8); color: #e8a33c; }
-  .level-E { background: rgba(122,28,28,0.3); border: 1px solid rgba(192,57,43,0.6); color: #e87070; }
-  .level-P { background: rgba(26,58,107,0.25); border: 1px solid rgba(26,58,107,0.8); color: #6aacf0; }
-  .level-F { background: rgba(80,40,100,0.25); border: 1px solid rgba(120,60,160,0.6); color: #c080f0; }
-  .played-toggle { display: flex; align-items: center; justify-content: center; }
-  .toggle-btn {
-    width: 28px; height: 28px;
-    border: 2px solid var(--border);
-    background: transparent;
-    color: var(--text-dim);
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .toggle-btn.active {
-    border-color: var(--green-light);
-    color: var(--green-light);
-    background: rgba(74,184,128,0.1);
-  }
-  .stars { display: flex; gap: 2px; align-items: center; }
-  .star {
-    font-size: 14px;
-    cursor: pointer;
-    color: var(--star-off);
-    transition: color 0.1s, transform 0.1s;
-    line-height: 1;
-  }
-  .star.on { color: var(--star-on); }
-  .star:hover { transform: scale(1.2); }
-  .note-suffix { color: var(--text-dim); font-family: 'Cinzel', serif; font-size: 11px; }
-  .year-cell { font-family: 'Cinzel', serif; font-size: 11px; color: var(--text-dim); }
-  footer {
-    text-align: center;
-    padding: 32px 24px;
-    border-top: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-  }
-  footer::before {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 1px;
-    background: var(--gold-dim);
-    margin: 0 auto 16px;
-  }
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    align-items: center; justify-content: center;
-    z-index: 100;
-    backdrop-filter: blur(4px);
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: var(--panel);
-    border: 1px solid var(--border-glow);
-    padding: 32px;
-    max-width: 480px;
-    width: 90%;
-    box-shadow: 0 0 60px rgba(212,168,67,0.15);
-    position: relative;
-    animation: modal-in 0.3s ease;
-  }
-  @keyframes modal-in {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .modal-close {
-    position: absolute; top: 12px; right: 16px;
-    background: none; border: none;
-    color: var(--text-dim); font-size: 20px; cursor: pointer;
-  }
-  .modal-title {
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
-    color: var(--gold);
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-  .modal-field { margin-bottom: 16px; }
-  .modal-label {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    display: block;
-    margin-bottom: 6px;
-  }
-  .modal-input {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Crimson Text', serif;
-    font-size: 15px;
-    padding: 8px 12px;
-    transition: border-color 0.2s;
-  }
-  .modal-input:focus { outline: none; border-color: var(--gold-dim); }
-  .modal-stars { display: flex; gap: 6px; }
-  .modal-star {
-    font-size: 22px;
-    cursor: pointer;
-    color: var(--star-off);
-    transition: color 0.1s, transform 0.1s;
-  }
-  .modal-star.on { color: var(--star-on); }
-  .modal-star:hover { transform: scale(1.15); }
-  .modal-btn {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    padding: 10px 24px;
-    border: 1px solid var(--gold-dim);
-    background: rgba(212,168,67,0.08);
-    color: var(--gold);
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    margin-top: 8px;
-    width: 100%;
-  }
-  .modal-btn:hover { background: rgba(212,168,67,0.15); border-color: var(--gold); }
-  .progress-wrap {
-    padding: 16px 24px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .progress-track {
-    height: 3px;
-    background: var(--border);
-    position: relative;
-    overflow: hidden;
-  }
+  .progress-track { height: 3px; background: var(--border); overflow: hidden; }
   .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--gold-dim), var(--gold));
     transition: width 0.5s ease;
     box-shadow: 0 0 8px var(--gold-dim);
   }
-  .progress-label {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
+
+  /* ── FILTERS ── */
+  .filters {
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 14px 24px; border-bottom: 1px solid var(--border); border-top: 1px solid var(--border);
   }
+  .filter-btn {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.1em;
+    padding: 5px 13px; border: 1px solid var(--border);
+    background: transparent; color: var(--text-dim); cursor: pointer; transition: all 0.2s; text-transform: uppercase;
+  }
+  .filter-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+  .filter-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212,168,67,0.06); }
+
+  /* ── TABLE ── */
+  .table-container { padding: 16px 16px 40px; max-width: 1500px; margin: 0 auto; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead tr { border-bottom: 2px solid var(--gold-dim); }
+  th {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold-dim); padding: 9px 10px;
+    text-align: left; white-space: nowrap; user-select: none;
+  }
+  tbody tr { border-bottom: 1px solid rgba(58,47,30,0.4); transition: background 0.15s; cursor: pointer; }
+  tbody tr:hover { background: rgba(212,168,67,0.04); }
+  tbody tr.played { background: rgba(46,125,90,0.04); }
+  tbody tr.played:hover { background: rgba(46,125,90,0.08); }
+  td { padding: 7px 10px; vertical-align: middle; }
+
+  .game-title { font-weight: 600; font-size: 14px; color: var(--text); min-width: 190px; }
+  .game-title.not-played { color: var(--text-dim); font-weight: 400; font-style: italic; }
+
+  .level-badge {
+    display: inline-flex; align-items: center;
+    font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.05em;
+    padding: 3px 7px; border-radius: 2px; text-transform: uppercase; white-space: nowrap;
+  }
+  .level-D { background: rgba(46,110,74,0.18); border: 1px solid rgba(46,110,74,0.5); color: #6dcb97; }
+  .level-C { background: rgba(107,78,26,0.18); border: 1px solid rgba(150,110,30,0.65); color: #e8a33c; }
+  .level-E { background: rgba(122,28,28,0.22); border: 1px solid rgba(192,57,43,0.5); color: #e87070; }
+  .level-P { background: rgba(26,58,107,0.18); border: 1px solid rgba(40,80,160,0.55); color: #6aacf0; }
+  .level-K { background: rgba(100,30,120,0.18); border: 1px solid rgba(150,60,180,0.5); color: #d080f0; }
+  .level-V { background: rgba(60,60,60,0.25); border: 1px solid rgba(120,120,120,0.4); color: #b8b8b8; }
+
+  .played-toggle { display: flex; align-items: center; justify-content: center; }
+  .toggle-btn {
+    width: 24px; height: 24px; border: 2px solid var(--border);
+    background: transparent; color: var(--text-dim); font-size: 12px;
+    cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+  }
+  .toggle-btn.active { border-color: var(--green-light); color: var(--green-light); background: rgba(74,184,128,0.1); }
+
+  .stars { display: flex; gap: 1px; align-items: center; }
+  .star { font-size: 12px; cursor: pointer; color: var(--star-off); transition: color 0.1s, transform 0.1s; line-height: 1; }
+  .star.on { color: var(--star-on); }
+  .star:hover { transform: scale(1.2); }
+
+  .year-cell { font-family: 'Cinzel', serif; font-size: 10px; color: var(--text-dim); }
+
   .section-header {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    padding: 10px 12px 6px;
-    background: rgba(212,168,67,0.03);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.3em;
+    color: var(--text-dim); text-transform: uppercase; padding: 9px 10px 6px;
+    background: rgba(212,168,67,0.03); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
   }
-  .empty-state {
-    text-align: center;
-    padding: 40px;
-    color: var(--text-dim);
-    font-style: italic;
-    font-size: 16px;
+  .empty-state { text-align: center; padding: 40px; color: var(--text-dim); font-style: italic; }
+
+  footer {
+    text-align: center; padding: 22px 24px; border-top: 1px solid var(--border);
+    color: var(--text-dim); font-size: 11px; letter-spacing: 0.07em;
   }
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); }
-  ::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+  footer::before { content: ''; display: block; width: 50px; height: 1px; background: var(--gold-dim); margin: 0 auto 12px; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.87);
+    display: none; align-items: center; justify-content: center; z-index: 100; backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--panel); border: 1px solid var(--border-glow);
+    padding: 28px; max-width: 450px; width: 92%;
+    box-shadow: 0 0 60px rgba(212,168,67,0.15); position: relative;
+    animation: modal-in 0.25s ease;
+  }
+  @keyframes modal-in { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+  .modal-close { position: absolute; top: 10px; right: 14px; background: none; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
+  .modal-title { font-family:'Cinzel',serif; font-size:14px; color:var(--gold); margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--border); line-height:1.5; }
+  .modal-field { margin-bottom: 14px; }
+  .modal-label { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); display:block; margin-bottom:6px; }
+  .modal-input { width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text); font-family:'Crimson Text',serif; font-size:15px; padding:8px 12px; transition:border-color 0.2s; }
+  .modal-input:focus { outline:none; border-color:var(--gold-dim); }
+  .modal-stars { display:flex; gap:4px; }
+  .modal-star { font-size:20px; cursor:pointer; color:var(--star-off); transition:color 0.1s, transform 0.1s; }
+  .modal-star.on { color:var(--star-on); }
+  .modal-star:hover { transform:scale(1.1); }
+  .modal-btn { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.15em; padding:10px 24px; border:1px solid var(--gold-dim); background:rgba(212,168,67,0.08); color:var(--gold); cursor:pointer; text-transform:uppercase; transition:all 0.2s; margin-top:6px; width:100%; }
+  .modal-btn:hover { background:rgba(212,168,67,0.15); border-color:var(--gold); }
+
+  ::-webkit-scrollbar { width:5px; height:5px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border); }
+  ::-webkit-scrollbar-thumb:hover { background:var(--gold-dim); }
 </style>
 </head>
 <body>
@@ -357,7 +193,7 @@
 <header>
   <div class="header-lock">🔐</div>
   <h1>EXIT — MON CARNET D'ÉVASION</h1>
-  <div class="subtitle">Collection personnelle · Gamme IELLO × KOSMOS</div>
+  <div class="subtitle">Collection complète · IELLO × KOSMOS · Mise à jour 2025</div>
   <div class="stats-bar">
     <div class="stat"><span class="stat-value" id="statJoue">0</span><span class="stat-label">Joués</span></div>
     <div class="stat-divider"></div>
@@ -372,10 +208,7 @@
 </header>
 
 <div class="progress-wrap">
-  <div class="progress-label">
-    <span>Progression</span>
-    <span id="progressText">0 / 0</span>
-  </div>
+  <div class="progress-label"><span>Progression</span><span id="progressText">0 / 0</span></div>
   <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
 </div>
 
@@ -387,14 +220,15 @@
   <button class="filter-btn" data-filter="C">Confirmé</button>
   <button class="filter-btn" data-filter="E">Expert</button>
   <button class="filter-btn" data-filter="P">Puzzle</button>
-  <button class="filter-btn" data-filter="F">Famille</button>
+  <button class="filter-btn" data-filter="K">Kids</button>
+  <button class="filter-btn" data-filter="V">Calendriers / Livres</button>
 </div>
 
 <div class="table-container">
-  <table id="gameTable">
+  <table>
     <thead>
       <tr>
-        <th style="width:44px">✓</th>
+        <th style="width:36px">✓</th>
         <th>Titre</th>
         <th>Niveau</th>
         <th>Année</th>
@@ -406,12 +240,12 @@
     </thead>
     <tbody id="gameBody"></tbody>
   </table>
-  <div class="empty-state" id="emptyState" style="display:none">Aucun jeu ne correspond à ce filtre.</div>
+  <div class="empty-state" id="emptyState" style="display:none">Aucun jeu ne correspond.</div>
 </div>
 
 <footer>
-  EXIT – Le Jeu · Créé par Inka & Markus Brand · Édité par KOSMOS / IELLO<br>
-  Cliquer sur une ligne pour éditer · Données sauvegardées localement dans le navigateur
+  EXIT – Le Jeu · Inka & Markus Brand · KOSMOS / IELLO<br>
+  Cliquer sur une ligne pour noter · Données sauvegardées localement dans le navigateur
 </footer>
 
 <div class="modal-overlay" id="modalOverlay">
@@ -419,7 +253,7 @@
     <button class="modal-close" id="modalClose">✕</button>
     <div class="modal-title" id="modalTitle"></div>
     <div class="modal-field">
-      <label class="modal-label">Étoiles (score de partie sur 10)</label>
+      <label class="modal-label">Étoiles — score de partie (sur 10)</label>
       <div class="modal-stars" id="modalStars"></div>
     </div>
     <div class="modal-field">
@@ -439,226 +273,198 @@
 </div>
 
 <script>
+// ══════════════════════════════════════════════════════════════
+//  LISTE COMPLÈTE — 40 titres IELLO (toutes sources croisées)
+//  Sources : iello.fr, ludum.fr, espritjeu.com, le-passe-temps.com
+//  Niveaux : D=Débutant  C=Confirmé  E=Expert  P=Puzzle  K=Kids  V=Calendrier/Livre
+// ══════════════════════════════════════════════════════════════
 const GAMES = [
-  { id: 1,  title: "Le Laboratoire Secret",           level: "D", year: 2017 },
-  { id: 2,  title: "La Cabane Abandonnée",             level: "D", year: 2017 },
-  { id: 3,  title: "L'Île des Oubliés",               level: "D", year: 2018 },
-  { id: 4,  title: "Le Trésor Englouti",              level: "D", year: 2018 },
-  { id: 5,  title: "La Maison des Énigmes",           level: "D", year: 2019 },
-  { id: 6,  title: "Le Musée Mystérieux",             level: "D", year: 2020 },
-  { id: 7,  title: "La Gare Hantée",                  level: "D", year: 2021 },
-  { id: 8,  title: "Le Train Fantôme de l'Horreur",   level: "D", year: 2022 },
-  { id: 9,  title: "La Station Polaire",              level: "D", year: 2019 },
-  { id: 10, title: "La Forêt Mystérieuse",            level: "D", year: 2021 },
-  { id: 11, title: "La Pyramide de Khéops",           level: "C", year: 2017 },
-  { id: 12, title: "Les Profondeurs",                 level: "C", year: 2018 },
-  { id: 13, title: "Le Château Médiéval",             level: "C", year: 2018 },
-  { id: 14, title: "La Villa des Énigmes",            level: "C", year: 2019 },
-  { id: 15, title: "Le Parc des Attractions",         level: "C", year: 2019 },
-  { id: 16, title: "La Crypte du Comte",              level: "C", year: 2020 },
-  { id: 17, title: "La Cabane dans les Bois",         level: "C", year: 2021 },
-  { id: 18, title: "La Forêt des Loups",              level: "C", year: 2022 },
-  { id: 19, title: "L'Affaire du Mississippi",        level: "C", year: 2022 },
-  { id: 20, title: "Le Repaire du Professeur",        level: "C", year: 2023 },
-  { id: 21, title: "Le Vol au-dessus de Hawaï",       level: "C", year: 2021 },
-  { id: 22, title: "La Carrière Secrète",             level: "C", year: 2023 },
-  { id: 23, title: "Le Cadavre de l'Orient-Express",  level: "E", year: 2018 },
-  { id: 24, title: "La Revanche sur l'Orient-Express",level: "E", year: 2019 },
-  { id: 25, title: "Le Labyrinthe Oublié",            level: "E", year: 2020 },
-  { id: 26, title: "La Dernière Clé",                 level: "E", year: 2021 },
-  { id: 27, title: "La Cité Interdite",               level: "E", year: 2022 },
-  { id: 28, title: "Les Katacombes de Paris",         level: "E", year: 2022 },
-  { id: 29, title: "La Porte entre les Mondes",       level: "E", year: 2023 },
-  { id: 30, title: "Le Phare Solitaire (Puzzle)",     level: "P", year: 2021 },
-  { id: 31, title: "Le Temple Perdu (Puzzle)",        level: "P", year: 2021 },
-  { id: 32, title: "L'Île du Trésor (Puzzle)",        level: "P", year: 2022 },
-  { id: 33, title: "La Forêt Enchantée (Puzzle)",     level: "P", year: 2022 },
-  { id: 34, title: "L'Atlantide (Puzzle)",            level: "P", year: 2023 },
-  { id: 35, title: "La Petite Abeille Bummelz",       level: "F", year: 2023 },
-  { id: 36, title: "La Princesse de Cristal",         level: "F", year: 2024 },
+
+  // ── DÉBUTANT ──────────────────────────────────────────────
+  { id:1,  title:"Le Laboratoire Secret",              level:"D", year:2017 },
+  { id:2,  title:"La Cabane Abandonnée",               level:"D", year:2017 },
+  { id:3,  title:"Le Trésor Englouti",                level:"D", year:2018 },
+  { id:4,  title:"Le Musée Mystérieux",               level:"D", year:2019 },
+  { id:5,  title:"La Maison des Énigmes",             level:"D", year:2020 },
+  { id:6,  title:"Le Parc de l'Horreur",              level:"D", year:2020 },
+  { id:7,  title:"La Forêt Enchantée",                level:"D", year:2022 },
+  { id:8,  title:"Le Vol vers l'Inconnu",             level:"D", year:2021 },
+  { id:9,  title:"Le Labyrinthe Maudit",              level:"D", year:2022 },
+  { id:10, title:"Périls en Terres du Milieu (SdA)",  level:"D", year:2022 },
+  { id:11, title:"L'Académie de Magie",               level:"D", year:2024 },
+  { id:12, title:"Cap sur Catan",                     level:"D", year:2025 },
+
+  // ── CONFIRMÉ ──────────────────────────────────────────────
+  { id:13, title:"Le Tombeau du Pharaon",             level:"C", year:2017 },
+  { id:14, title:"L'Île Oubliée",                    level:"C", year:2018 },
+  { id:15, title:"La Station Polaire",               level:"C", year:2018 },
+  { id:16, title:"Le Château Interdit",              level:"C", year:2018 },
+  { id:17, title:"Le Manoir Sinistre",               level:"C", year:2019 },
+  { id:18, title:"L'Affaire du Mississippi",         level:"C", year:2021 },
+  { id:19, title:"Le Cimetière des Ombres",          level:"C", year:2022 },
+  { id:20, title:"La Porte entre les Mondes",        level:"C", year:2022 },
+  { id:21, title:"Le Bandit de Fortune City",        level:"C", year:2023 },
+  { id:22, title:"Le Retour à la Cabane Abandonnée", level:"C", year:2023 },
+  { id:23, title:"La Disparition de Sherlock Holmes",level:"C", year:2023 },
+  { id:24, title:"L'Héritage du Voyageur",           level:"C", year:2024 },
+  { id:25, title:"Course-Poursuite à Amsterdam",     level:"C", year:2025 },
+  { id:26, title:"Intrigue à Venise",                level:"C", year:2025 },
+
+  // ── EXPERT ────────────────────────────────────────────────
+  { id:27, title:"Le Cadavre de l'Orient-Express",   level:"E", year:2018 },
+  { id:28, title:"Les Catacombes de l'Effroi",       level:"E", year:2020 },
+  { id:29, title:"L'Évasion de Prison",              level:"E", year:2024 },
+
+  // ── PUZZLE ────────────────────────────────────────────────
+  { id:30, title:"Puzzle — Le Temple Perdu",         level:"P", year:2021 },
+  { id:31, title:"Puzzle — Le Phare Solitaire",      level:"P", year:2021 },
+  { id:32, title:"Puzzle — Le Château Lugubre",      level:"P", year:2022 },
+
+  // ── KIDS ──────────────────────────────────────────────────
+  { id:33, title:"Kids — La Jungle aux Énigmes",     level:"K", year:2023 },
+  { id:34, title:"Kids — La Chasse aux Cookies",     level:"K", year:2024 },
+  { id:35, title:"Kids — La Foire aux Frissons",     level:"K", year:2025 },
+
+  // ── CALENDRIERS DE L'AVENT & LIVRE ────────────────────────
+  { id:36, title:"Calendrier — La Mystérieuse Grotte de Glace",  level:"V", year:2022 },
+  { id:37, title:"Calendrier — À la Poursuite du Livre d'Or",    level:"V", year:2023 },
+  { id:38, title:"Calendrier — La Tempête Silencieuse",          level:"V", year:2024 },
+  { id:39, title:"Calendrier — Disparition à Hollywood",         level:"V", year:2025 },
+  { id:40, title:"Livre — La Dame de la Brume",                  level:"V", year:2022 },
 ];
 
-const LEVEL_LABELS = { D: "Débutant", C: "Confirmé", E: "Expert", P: "Puzzle", F: "Famille" };
+const LABELS = { D:"Débutant", C:"Confirmé", E:"Expert", P:"Puzzle", K:"Kids", V:"Calendrier / Livre" };
 
-let state = {};
-let currentFilter = "all";
-let currentModal = null;
-let modalStars = 0;
+let state = {}, currentFilter = "all", currentModal = null, modalStars = 0;
 
-function loadState() {
-  try { state = JSON.parse(localStorage.getItem('exit-tracker') || '{}'); }
-  catch { state = {}; }
-}
+function load() { try { state = JSON.parse(localStorage.getItem('exit-v4') || '{}'); } catch { state = {}; } }
+function save() { localStorage.setItem('exit-v4', JSON.stringify(state)); }
+function gs(id) { return state[id] || { played:false, stars:0, time:'', note:'', notes:'' }; }
 
-function saveState() {
-  localStorage.setItem('exit-tracker', JSON.stringify(state));
-}
-
-function getGame(id) {
-  return state[id] || { played: false, stars: 0, time: '', note: '', notes: '' };
-}
-
-function renderModalStars(count, container, onSet) {
-  container.innerHTML = '';
+function renderModalStars(n, cont, cb) {
+  cont.innerHTML = '';
   for (let i = 1; i <= 10; i++) {
     const s = document.createElement('span');
-    s.className = 'modal-star' + (i <= count ? ' on' : '');
+    s.className = 'modal-star' + (i <= n ? ' on' : '');
     s.textContent = '★';
-    s.dataset.val = i;
-    s.addEventListener('click', () => { onSet(i); });
-    container.appendChild(s);
+    s.onclick = () => cb(i);
+    cont.appendChild(s);
   }
 }
 
 function openModal(game) {
   currentModal = game.id;
-  const g = getGame(game.id);
+  const d = gs(game.id);
   document.getElementById('modalTitle').textContent = game.title;
-  document.getElementById('modalTime').value = g.time || '';
-  document.getElementById('modalNote').value = g.note || '';
-  document.getElementById('modalNotes').value = g.notes || '';
-  modalStars = g.stars || 0;
-  const starsContainer = document.getElementById('modalStars');
-  const updateStars = (val) => {
-    modalStars = val;
-    renderModalStars(val, starsContainer, updateStars);
-  };
-  renderModalStars(modalStars, starsContainer, updateStars);
+  document.getElementById('modalTime').value = d.time || '';
+  document.getElementById('modalNote').value = d.note || '';
+  document.getElementById('modalNotes').value = d.notes || '';
+  modalStars = d.stars || 0;
+  const sc = document.getElementById('modalStars');
+  const upd = v => { modalStars = v; renderModalStars(v, sc, upd); };
+  renderModalStars(modalStars, sc, upd);
   document.getElementById('modalOverlay').classList.add('open');
 }
 
-document.getElementById('modalClose').addEventListener('click', () => {
-  document.getElementById('modalOverlay').classList.remove('open');
-});
-
-document.getElementById('modalOverlay').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('modalOverlay'))
-    document.getElementById('modalOverlay').classList.remove('open');
-});
-
-document.getElementById('modalSave').addEventListener('click', () => {
+document.getElementById('modalClose').onclick = () => document.getElementById('modalOverlay').classList.remove('open');
+document.getElementById('modalOverlay').onclick = e => { if (e.target === document.getElementById('modalOverlay')) document.getElementById('modalOverlay').classList.remove('open'); };
+document.getElementById('modalSave').onclick = () => {
   if (!currentModal) return;
-  const g = getGame(currentModal);
-  g.played = true;
-  g.stars = modalStars;
-  g.time = document.getElementById('modalTime').value;
-  g.note = document.getElementById('modalNote').value;
-  g.notes = document.getElementById('modalNotes').value;
-  state[currentModal] = g;
-  saveState();
+  const d = gs(currentModal);
+  d.played = true; d.stars = modalStars;
+  d.time  = document.getElementById('modalTime').value;
+  d.note  = document.getElementById('modalNote').value;
+  d.notes = document.getElementById('modalNotes').value;
+  state[currentModal] = d; save();
   document.getElementById('modalOverlay').classList.remove('open');
   render();
-});
+};
 
-function filteredGames() {
-  return GAMES.filter(game => {
-    const g = getGame(game.id);
-    if (currentFilter === 'played') return g.played;
-    if (currentFilter === 'not-played') return !g.played;
-    if (['D','C','E','P','F'].includes(currentFilter)) return game.level === currentFilter;
+function filtered() {
+  return GAMES.filter(gm => {
+    const d = gs(gm.id);
+    if (currentFilter === 'played')     return d.played;
+    if (currentFilter === 'not-played') return !d.played;
+    if (['D','C','E','P','K','V'].includes(currentFilter)) return gm.level === currentFilter;
     return true;
   });
 }
 
 function updateStats() {
-  const played = GAMES.filter(g => getGame(g.id).played);
-  const total = GAMES.length;
-  const pct = Math.round(played.length / total * 100);
-  document.getElementById('statJoue').textContent = played.length;
+  const played = GAMES.filter(gm => gs(gm.id).played);
+  const total = GAMES.length, n = played.length;
+  const pct = Math.round(n / total * 100);
+  document.getElementById('statJoue').textContent = n;
   document.getElementById('statTotal').textContent = total;
   document.getElementById('statPct').textContent = pct + '%';
-  const notes = played.map(g => parseFloat(getGame(g.id).note)).filter(n => !isNaN(n) && n > 0);
-  const stars = played.map(g => getGame(g.id).stars).filter(s => s > 0);
-  document.getElementById('statNote').textContent = notes.length
-    ? (notes.reduce((a,b)=>a+b,0)/notes.length).toFixed(1) : '—';
-  document.getElementById('statStars').textContent = stars.length
-    ? (stars.reduce((a,b)=>a+b,0)/stars.length).toFixed(1) + '★' : '—';
+  const notes = played.map(gm => parseFloat(gs(gm.id).note)).filter(x => !isNaN(x) && x > 0);
+  const stars = played.map(gm => gs(gm.id).stars).filter(x => x > 0);
+  document.getElementById('statNote').textContent = notes.length ? (notes.reduce((a,b)=>a+b,0)/notes.length).toFixed(1) : '—';
+  document.getElementById('statStars').textContent = stars.length ? (stars.reduce((a,b)=>a+b,0)/stars.length).toFixed(1) + '★' : '—';
   document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = `${played.length} / ${total}`;
+  document.getElementById('progressText').textContent = `${n} / ${total}`;
 }
 
-function renderStarsInline(count) {
-  let html = '';
-  for (let i = 1; i <= 10; i++) {
-    html += `<span class="star ${i <= count ? 'on' : ''}" data-val="${i}">★</span>`;
-  }
-  return html;
+function starsHTML(n) {
+  return Array.from({length:10}, (_,i) => `<span class="star ${i+1<=n?'on':''}" data-val="${i+1}">★</span>`).join('');
 }
 
 function render() {
-  const games = filteredGames();
+  const games = filtered();
   const body = document.getElementById('gameBody');
   body.innerHTML = '';
-
   const empty = document.getElementById('emptyState');
-  if (games.length === 0) { empty.style.display = 'block'; updateStats(); return; }
+  if (!games.length) { empty.style.display = 'block'; updateStats(); return; }
   empty.style.display = 'none';
 
   let lastLevel = null;
+  games.forEach(gm => {
+    const d = gs(gm.id);
 
-  games.forEach(game => {
-    const g = getGame(game.id);
-
-    // ✅ CORRECTION : séparateurs uniquement en vue "Tous" ou filtre par niveau
-    if ((currentFilter === 'all' || ['D','C','E','P','F'].includes(currentFilter)) && game.level !== lastLevel) {
-      lastLevel = game.level;
+    if (gm.level !== lastLevel) {
+      lastLevel = gm.level;
       const sep = document.createElement('tr');
-      sep.innerHTML = `<td colspan="8"><div class="section-header">${LEVEL_LABELS[game.level]}</div></td>`;
+      sep.innerHTML = `<td colspan="8"><div class="section-header">${LABELS[gm.level]}</div></td>`;
       sep.style.cursor = 'default';
       body.appendChild(sep);
     }
 
     const tr = document.createElement('tr');
-    if (g.played) tr.classList.add('played');
-
-    const timeDisplay = g.time ? `${g.time} min` : '';
-    const noteDisplay = g.note ? g.note : '';
+    if (d.played) tr.classList.add('played');
 
     tr.innerHTML = `
       <td class="played-toggle">
-        <button class="toggle-btn ${g.played ? 'active' : ''}" data-id="${game.id}" title="Marquer joué">
-          ${g.played ? '✓' : '○'}
-        </button>
+        <button class="toggle-btn ${d.played?'active':''}" data-id="${gm.id}">${d.played?'✓':'○'}</button>
       </td>
-      <td class="game-title ${g.played ? '' : 'not-played'}">${game.title}</td>
-      <td><span class="level-badge level-${game.level}">${LEVEL_LABELS[game.level]}</span></td>
-      <td class="year-cell">${game.year}</td>
-      <td><div class="stars" data-id="${game.id}">${renderStarsInline(g.stars || 0)}</div></td>
-      <td style="font-family:'Cinzel',serif;font-size:12px;color:var(--text-dim)">${timeDisplay}</td>
-      <td style="font-family:'Cinzel',serif;font-size:14px;color:var(--gold-light);font-weight:600">
-        ${noteDisplay ? noteDisplay + '<span class="note-suffix">/10</span>' : '<span style="color:var(--text-dim);font-size:11px">—</span>'}
+      <td class="game-title ${d.played?'':'not-played'}">${gm.title}</td>
+      <td><span class="level-badge level-${gm.level}">${LABELS[gm.level]}</span></td>
+      <td class="year-cell">${gm.year}</td>
+      <td><div class="stars" data-id="${gm.id}">${starsHTML(d.stars||0)}</div></td>
+      <td style="font-family:'Cinzel',serif;font-size:11px;color:var(--text-dim)">${d.time?d.time+' min':''}</td>
+      <td style="font-family:'Cinzel',serif;font-size:13px;color:var(--gold-light);font-weight:600">
+        ${d.note ? d.note+'<span style="color:var(--text-dim);font-size:10px">/10</span>' : '<span style="color:var(--text-dim);font-size:11px">—</span>'}
       </td>
-      <td style="font-family:'Crimson Text',serif;font-size:13px;font-style:italic;color:var(--text-dim);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${g.notes || ''}</td>
+      <td style="font-family:'Crimson Text',serif;font-size:13px;font-style:italic;color:var(--text-dim);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${d.notes||''}</td>
     `;
 
-    tr.querySelector('.toggle-btn').addEventListener('click', (e) => {
+    tr.querySelector('.toggle-btn').addEventListener('click', e => {
       e.stopPropagation();
       const id = parseInt(e.currentTarget.dataset.id);
-      const gg = getGame(id);
-      gg.played = !gg.played;
-      state[id] = gg;
-      saveState();
-      render();
+      const dd = gs(id); dd.played = !dd.played; state[id] = dd; save(); render();
     });
 
     tr.querySelectorAll('.star').forEach(star => {
-      star.addEventListener('click', (e) => {
+      star.addEventListener('click', e => {
         e.stopPropagation();
         const id = parseInt(tr.querySelector('.stars').dataset.id);
         const val = parseInt(e.target.dataset.val);
-        const gg = getGame(id);
-        gg.played = true;
-        gg.stars = val;
-        state[id] = gg;
-        saveState();
-        render();
+        const dd = gs(id); dd.played = true; dd.stars = val; state[id] = dd; save(); render();
       });
     });
 
-    tr.addEventListener('click', () => openModal(game));
+    tr.addEventListener('click', () => openModal(gm));
     body.appendChild(tr);
   });
-
   updateStats();
 }
 
@@ -671,7 +477,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-loadState();
+load();
 render();
 </script>
 </body>
